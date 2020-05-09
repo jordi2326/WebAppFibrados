@@ -1,0 +1,75 @@
+HTLMl
+
+ <div *ngFor='let user of users'>
+    <img [src]="user.picture.medium">
+    <h2>{{ user.name.first | uppercase }}</h2>
+    <p>{{ user.email }}</p>
+  </div>
+
+importante el *ngFor
+
+Typescript
+creamos un array/contenedor tal com este users : any[] = [];
+
+creamos el constructor de nuestro servicio dentro del typescript
+  constructor(private Auth : AuthService) { }
+
+Si queremos hacer un get lo pondremos dentro de ngOnInit():void
+tal como este ejemplo
+
+ngOnInit(): void {
+    this.Auth.getUsers().subscribe(
+      (data) => { // Success
+        this.users = data['results'];
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+}
+
+Si queremos hacer un post/put/delete lo hariamos fuera del ngOnInit()
+como este ejemplo
+ loginUser(event){
+    event.preventDefault()
+    const target = event.target
+    const email=target.querySelector('#email').value
+    const password=target.querySelector('#password').value
+
+    this.Auth.getUserDetails(email, password);
+    console.log(email,password)
+
+  }
+
+En el caso del post, en este caso un formulario tendremos que añadir en el form lo siguiente 
+(submit)="loginUser($event)"
+
+(submit) porque es el type del boton 
+
+
+Tambien tendremos que añadir import { HttpClientModule} from '@angular/common/http'; en el typescript y en el app/app.modules.ts como en el import(HttpClientModule) correspondiente
+
+Añadiremos el servicio en el typescript del componente 
+import { AuthService } from '../../../services/auth.service';
+
+
+Crearemos el servicio 
+añadiremos el import de import {HttpClient} from '@angular/common/http'
+
+si es un get :
+   getUsers() {
+    return this.http.get('https://randomuser.me/api/?results=25');
+  }
+Hay que cambiar la url pero se hace de esta manera
+
+en el caso del post :
+getUserDetails(email,password){
+    return this.http.post('/api/auth.php',{
+      email,
+      password
+    }).subscribe(data => {
+      console.log(data,"is what we got from the server")
+    })
+  }
+
+Hay que cambiar la url
