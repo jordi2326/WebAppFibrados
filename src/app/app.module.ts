@@ -15,6 +15,10 @@ import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { HttpClientModule} from '@angular/common/http';
 import { AuthService } from './services/auth.service';
+import { VariablesglobalesService } from './services/variablesglobales.service';
+
+VariablesglobalesService
+import { MensagesComponent } from './components/mensages/mensages.component';
 
 
 @NgModule({
@@ -27,7 +31,8 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    Page404Component
+    Page404Component,
+    MensagesComponent
   ],
   imports: [
     FormsModule,
@@ -35,7 +40,7 @@ import { AuthService } from './services/auth.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [VariablesglobalesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

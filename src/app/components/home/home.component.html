@@ -1,9 +1,38 @@
 <section id="home" class="mb-5 mt-5">
-    <br>
-    <br>
-    <br>
-    <p>Login Completo :) </p>
-   
+<br>
+<h1>FORO</h1>
+<br>
+<br>   
+    <div class="table-responsive">
+      <!--Table-->
+      <table class="table table-striped"  >
+
+        <!--Table head-->
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Autor</th>
+           
+          </tr>
+        </thead>
+        <!--Table head-->
+
+        <!--Table body-->
+        <tbody *ngFor="let X of Temas">
+          <tr>
+            <td routerLink="/mensages/{{X.id}}">{{X.titulo}}</td>
+            <td>{{X.autor}}</td>
+            
+          </tr>
+         
+         
+        </tbody>
+        <!--Table body-->
+
+      </table>
+
+      <!--Table-->
+    </div> 
   </section>
   
   

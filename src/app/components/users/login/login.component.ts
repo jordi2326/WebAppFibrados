@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router} from "@angular/router";
+import { VariablesglobalesService } from '../../../services/variablesglobales.service';
 
 import { HttpClientModule} from '@angular/common/http';
 

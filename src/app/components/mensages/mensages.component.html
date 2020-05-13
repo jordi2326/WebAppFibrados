@@ -1,0 +1,29 @@
+<br>
+<br>
+<br>
+<div  class="container-sm">
+<h1>{{mensage.titulo}}</h1>
+</div>
+<br>
+
+<div *ngFor="let aux of mensage.body" class="container-sm">
+    <div class="card">
+        <div class="card-header">
+            {{aux.name}}
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{aux.text}}.</p>
+        </div>
+      </div>
+      <br>
+</div>
+<div class="container-sm">
+<form (submit)="addMensajes($event)">
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Introduce tu mensaje </label>
+      <textarea class="form-control" id="texto" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Enviar mensaje</button>
+
+  </form>
+</div>
