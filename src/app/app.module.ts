@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {CookieService} from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListadosdeconversacionesComponent } from './components/admin/listadosdeconversaciones/listadosdeconversaciones.component';
@@ -40,7 +40,7 @@ import { MensagesComponent } from './components/mensages/mensages.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [VariablesglobalesService],
+  providers: [VariablesglobalesService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
