@@ -11,14 +11,14 @@ import { LoginComponent } from './components/users/login/login.component';
 import { ProfileComponent } from './components/users/profile/profile.component';
 import { RegisterComponent } from './components/users/register/register.component';
 import { Page404Component } from './components/page404/page404.component';
+
 import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { HttpClientModule} from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { VariablesglobalesService } from './services/variablesglobales.service';
-
-VariablesglobalesService
 import { MensagesComponent } from './components/mensages/mensages.component';
+import { AddtopicComponent } from './components/addtopic/addtopic.component';
 
 
 @NgModule({
@@ -32,7 +32,8 @@ import { MensagesComponent } from './components/mensages/mensages.component';
     ProfileComponent,
     RegisterComponent,
     Page404Component,
-    MensagesComponent
+    MensagesComponent,
+    AddtopicComponent
   ],
   imports: [
     FormsModule,

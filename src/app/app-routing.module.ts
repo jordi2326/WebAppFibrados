@@ -6,6 +6,8 @@ import { RegisterComponent } from 'src/app/components/users/register/register.co
 import { ProfileComponent } from 'src/app/components/users/profile/profile.component';
 import { Page404Component } from './components/page404/page404.component';
 import { MensagesComponent } from './components/mensages/mensages.component';
+import { AddtopicComponent} from './components/addtopic/addtopic.component';
+
 
 import { HttpClientModule} from '@angular/common/http';
 import { AuthService } from './services/auth.service';
@@ -17,6 +19,7 @@ const routes: Routes = [
   { path: 'user/register', component: RegisterComponent },
   { path: 'user/profile', component: ProfileComponent },
   { path: 'mensages/:id', component: MensagesComponent },
+  {path:'addtopic',component:AddtopicComponent},
   { path: '**', component: Page404Component }
 ];
 

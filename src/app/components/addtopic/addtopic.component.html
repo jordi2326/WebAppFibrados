@@ -1,0 +1,16 @@
+<br>
+<br>
+<br>
+<br>
+<form (submit)="addTopic($event)">
+    <div class="form-group" >
+      <label for="exampleFormControlInput1">Títol Tópic</label>
+      <input type="email" class="form-control" id="titulo" >
+    </div>
+    
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Insertar missatge</label>
+      <textarea class="form-control" id="mensage" rows="3"></textarea>
+    </div>
+    <button type="submit" routerLink="/home" class="btn btn-primary mb-2">Crear tópic</button>
+  </form>

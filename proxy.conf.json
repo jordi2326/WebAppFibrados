@@ -1,0 +1,6 @@
+{   
+    "/api": {
+      "target": "http://porygon.fib.upc.edu:8080",
+      "secure": false
+    }
+  }

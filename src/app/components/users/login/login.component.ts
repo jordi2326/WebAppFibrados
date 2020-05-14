@@ -4,6 +4,8 @@ import { Router} from "@angular/router";
 import { VariablesglobalesService } from '../../../services/variablesglobales.service';
 import {CookieService} from 'ngx-cookie-service';
 import { HttpClientModule} from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login',
@@ -12,8 +14,10 @@ import { HttpClientModule} from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
   users: any[] = [];
+  objeto: any[] = [];
 
-  constructor(private Auth : AuthService , private router:Router, private cookieService : CookieService ) { }
+
+  constructor(private Auth : AuthService , private router:Router, private cookieService : CookieService  , private api:HttpClient) { }
   private cookievalue:string;
   ngOnInit(): void {
     this.Auth.getUsers().subscribe(
@@ -24,8 +28,7 @@ export class LoginComponent implements OnInit {
         console.error(error);
       }
     );
-this.cookieService.set('token','our cookie value');//our cookie value podremos el valor del token que nos devuelve el header
-this.cookievalue=this.cookieService.get('token')//nos devolvera el string del token
+//this.cookievalue=this.cookieService.get('token')//nos devolvera el string del token
 
 }
   
@@ -43,6 +46,15 @@ this.cookievalue=this.cookieService.get('token')//nos devolvera el string del to
        // window.alert(data.)
       //}
    // })
+    if(  email== "" ||  password=="") window.alert("introduzca usuario y contraseña correcta")
+
+    this.objeto = [{username:email , password:password}]
+     this.Auth.login(this.objeto).subscribe(
+       res=>{
+         console.log(res);
+       }
+     );
+
     if(email == "jordi@gmail.com" &&  password=="12345") {
       window.alert("contraseña corrcta")
       this.router.navigate(['/home']);
