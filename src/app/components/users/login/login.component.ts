@@ -55,12 +55,18 @@ export class LoginComponent implements OnInit {
        }
      );
 
-    if(email == "jordi@gmail.com" &&  password=="12345") {
-      window.alert("contraseña corrcta")
-      this.router.navigate(['/home']);
+    if(email == "jordi" &&  password=="12345") {
+      window.alert("contraseña correcta")
+      this.router.navigate(['/home'])
     }
     else if(  email== "" ||  password=="") window.alert("introduzca usuario y contraseña correcta")
     console.log(email,password)
+   
+      if (email != 'jordi' || password != '12345'){
+      window.alert("contraseña o usuario erroneo")
+    } 
+
+
 
   }
       
