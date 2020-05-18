@@ -19,6 +19,8 @@ import { AuthService } from './services/auth.service';
 import { VariablesglobalesService } from './services/variablesglobales.service';
 import { MensagesComponent } from './components/mensages/mensages.component';
 import { AddtopicComponent } from './components/addtopic/addtopic.component';
+import { Usuario } from './models/Usuario';
+
 
 
 @NgModule({

@@ -7,6 +7,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { HttpClient} from '@angular/common/http';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   objeto: any[] = [];
 
 
-  constructor(private Auth : AuthService , private router:Router, private cookieService : CookieService  , private api:HttpClient) { }
+  constructor(private Auth : AuthService ,private router:Router, private cookieService : CookieService  , private api:HttpClient) { }
   private cookievalue:string;
   ngOnInit(): void {
     this.Auth.getUsers().subscribe(
@@ -46,29 +47,33 @@ export class LoginComponent implements OnInit {
        // window.alert(data.)
       //}
    // })
-    if(  email== "" ||  password=="") window.alert("introduzca usuario y contraseña correcta")
+     
 
-    this.objeto = [{username:email , password:password}]
-     this.Auth.login(this.objeto).subscribe(
-       res=>{
-         console.log(res);
-       }
-     );
+    if(  email== "" ||  password=="") window.alert("introduzca usuario y contraseña correcta");
 
-    if(email == "jordi" &&  password=="12345") {
-      window.alert("contraseña correcta")
-      this.router.navigate(['/home'])
-    }
-    else if(  email== "" ||  password=="") window.alert("introduzca usuario y contraseña correcta")
-    console.log(email,password)
-   
-      if (email != 'jordi' || password != '12345'){
-      window.alert("contraseña o usuario erroneo")
+     this.Auth.login(email,password).subscribe(resp => {
+      // display its headers
+      console.log(resp.status)
+      console.log(resp.headers)
+      let casa = resp.headers.keys();
+      let headers = casa.map(key =>
+       console.log(key));
+     
+      // display its headers
+
+      if(resp.status==200)       this.router.navigate(['/home'])
+     
+     }, 
+     error=>{
+       console.log('usuari o contrasenya incorrecta')
+     });
+
+    
     } 
 
 
 
   }
       
- }
+ 
 
