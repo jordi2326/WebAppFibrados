@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
 
      this.Auth.login(email,password).subscribe(resp => {
       // display its headers
-      console.log(resp.status)
+      console.log(resp)
       console.log(resp.headers)
       let casa = resp.headers.keys();
       let headers = casa.map(key =>
@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
      }, 
      error=>{
        console.log('usuari o contrasenya incorrecta')
+       console.log(error.status)
      });
 
     

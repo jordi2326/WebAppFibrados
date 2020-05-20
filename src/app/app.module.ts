@@ -14,12 +14,13 @@ import { Page404Component } from './components/page404/page404.component';
 
 import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { VariablesglobalesService } from './services/variablesglobales.service';
 import { MensagesComponent } from './components/mensages/mensages.component';
 import { AddtopicComponent } from './components/addtopic/addtopic.component';
 import { Usuario } from './models/Usuario';
+import { TokenInterceptor } from './interceptor/http-interceptor.service';
 
 
 
@@ -43,7 +44,9 @@ import { Usuario } from './models/Usuario';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [VariablesglobalesService,CookieService],
+  providers: [
+    VariablesglobalesService,CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,8 +10,9 @@ import { Usuario } from '../chuck/modelos/usuario';
   providedIn: 'root'
 })
 export class AuthService {
-  
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient) { 
+
+   }
   getUserDetails(email,password){
     return this.http.post('/api/auth.php',{
       email,
@@ -32,12 +33,10 @@ export class AuthService {
 
   
     login( email:string,password:string) {
-      let headers: HttpHeaders = new HttpHeaders();                  
       
-      headers = headers.append('Content-Type','application/x-www-form-urlencoded') ;
       let user:Usuario={username:email,password:password}
       console.log(user)
-        return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/login', JSON.stringify(user),{ observe: "response"})
+        return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/login', JSON.stringify({name:email,password:password}),{ observe: "response"})
   
     }
      
