@@ -10,9 +10,14 @@ import { Usuario } from '../chuck/modelos/usuario';
   providedIn: 'root'
 })
 export class AuthService {
+ 
   constructor(private http: HttpClient) { 
 
    }
+
+   register(name: any, password: any, email: any, privacidad: any) {
+    return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/user', JSON.stringify({email:email,isPrivate:privacidad,password:password,username:name}),{ headers:new HttpHeaders().set('Content-Type', 'application/json') })
+  }
   getUserDetails(email,password){
     return this.http.post('/api/auth.php',{
       email,
@@ -36,7 +41,9 @@ export class AuthService {
       
       let user:Usuario={username:email,password:password}
       console.log(user)
-        return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/login', JSON.stringify({name:email,password:password}),{ observe: "response"})
+      const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+
+        return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/login', JSON.stringify({username:email,password:password}),{ headers:new HttpHeaders().set('Content-Type', 'application/json') , observe: "response"})
   
     }
      

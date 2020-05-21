@@ -20,11 +20,38 @@
                   <input type="password"  name="password" id = "password" class="form-control" placeholder="Password" 
                     required minlength="5" maxlength="10">
                 </div>
-                
+                <div class="form-group">
+                  <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                  <select class="form-control" id="privacidad" placeholder="name@example.com">
+                    <option>Privacidad de la cuenta :Privada/Publica</option>
+                    <option>Publica</option>
+                    <option>Privada</option>
+                    
+                  </select>
+                </div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
                 <div class="form-group">
                   <a routerLink="/user/login" class="form-control login-user">Do you have account?</a>
                 </div>
+                <div>
+                <div *ngIf="emailwrong">
+                    <p>Email incorrecto</p>
+                </div>
+
+                <div *ngIf="faltancampos">
+
+                  <p>Campos vacios</p>
+              </div>
+
+              
+              <div *ngIf="usuarioexistente">
+                <p>usuario existente</p>
+              </div>
+            </div>
+
+
               </form>
             </div>
           </div>

@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     this.Auth.getUsers().subscribe(
       (data) => { // Success
         this.users = data['results'];
+        
       },
       (error) => {
         console.error(error);
