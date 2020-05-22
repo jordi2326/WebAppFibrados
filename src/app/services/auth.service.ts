@@ -39,12 +39,25 @@ export class AuthService {
   
     login( email:string,password:string) {
       
-      let user:Usuario={username:email,password:password}
-      console.log(user)
-      const config = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
-
-        return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/login', JSON.stringify({username:email,password:password}),{ headers:new HttpHeaders().set('Content-Type', 'application/json') , observe: "response"})
-  
+      let user:Usuario={username: email, password: password};
+      console.log(user);
+      const header = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': ' http://localhost:4200',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Methods': ' POST, GET, OPTIONS, DELETE',
+        'Access-Control-Max-Age': ' 3600',
+        'Access-Control-Allow-Headers': 'Content-Type, Accept, X-Requested-With, remember-me, Authorization, access-control-max-age'
+    });
+      return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/login', 
+        JSON.stringify({
+          username: email,
+          password: password
+        }),
+        {
+          headers: header, 
+          observe: 'response'
+        });
     }
      
 

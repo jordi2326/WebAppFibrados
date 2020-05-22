@@ -53,14 +53,6 @@ export class RegisterComponent implements OnInit {
   if(this.faltancampos== false && this.emailwrong==false ) this.Auth.register(name,password,email,privacidad).subscribe(resp => {
     // display its headers
     console.log(resp)
-    console.log(resp.headers)
-    let casa = resp.headers.keys();
-    let headers = casa.map(key =>
-     console.log(key));
-   
-    // display its headers
-
-    if(resp.status==200)       this.router.navigate(['user/login'])
    
    }, 
    error=>{
