@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, APP_ID } from '@angular/core';
+import { DataApiService } from '../../services/data-api.service';
+import {CookieService} from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-home',
@@ -6,14 +9,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  Temas =[{titulo :'Como mejorar mi rendimiento' , autor:'Jordi' , id:"1" },
-        {titulo:'Como mejorar mi resistencia', autor :'BombaNavarro',id:"2"},
-        {titulo:'Gimnasios low cost Barcelona' , autor:'Andres',id:"3"} ]
+  Temas:any = []
 
-  constructor() { 
+  constructor(private Api:DataApiService , private cookieService : CookieService) { 
   }
 
   ngOnInit(): void {
+    console.log( this.cookieService.get('token')              )
+
+    this.Api.getallpost().subscribe(
+      (data) => {
+          this.Temas=data['results']
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+    console.log(this.Temas)
+
+
+ 
   }
 
 }

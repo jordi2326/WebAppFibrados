@@ -5,6 +5,7 @@ import { VariablesglobalesService } from '../../../services/variablesglobales.se
 import {CookieService} from 'ngx-cookie-service';
 import { HttpClientModule} from '@angular/common/http';
 import { HttpClient} from '@angular/common/http';
+import { Login } from '../../../chuck/modelos/login';
 
 
 
@@ -17,8 +18,7 @@ export class LoginComponent implements OnInit {
   users: any[] = [];
   objeto: any[] = [];
 
-
-  constructor(private Auth : AuthService ,private router:Router, private cookieService : CookieService  , private api:HttpClient) { }
+  constructor( private Auth : AuthService ,private router:Router, private cookieService : CookieService  , private api:HttpClient) { }
   private cookievalue:string;
   ngOnInit(): void {
     this.Auth.getUsers().subscribe(
@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
 
      this.Auth.login(email,password).subscribe(resp => {
       // display its headers
-      console.log(resp)
       console.log(resp.headers)
       let casa = resp.headers.keys();
       let headers = casa.map(key =>
@@ -62,7 +61,15 @@ export class LoginComponent implements OnInit {
      
       // display its headers
 
-      if(resp.status==200)       this.router.navigate(['/home'])
+      if(resp.status==200) {
+              this.cookieService.set('token',resp.body["token"]);//our cookie value podremos el valor del token que nos devuelve el header
+              this.cookieService.set('name',resp.body["username"])
+              console.log( this.cookieService.get('token')              )
+           this.router.navigate(['/home'])
+
+      }
+
+
      
      }, 
      error=>{

@@ -45,7 +45,8 @@ import { TokenInterceptor } from './interceptor/http-interceptor.service';
     AppRoutingModule
   ],
   providers: [
-    VariablesglobalesService,CookieService
+    VariablesglobalesService,CookieService,
+    
   ],
   bootstrap: [AppComponent]
 })

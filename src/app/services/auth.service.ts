@@ -10,13 +10,26 @@ import { Usuario } from '../chuck/modelos/usuario';
   providedIn: 'root'
 })
 export class AuthService {
- 
+
   constructor(private http: HttpClient) { 
 
    }
 
    register(name: any, password: any, email: any, privacidad: any) {
-    return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/user', JSON.stringify({email:email,isPrivate:privacidad,password:password,username:name}),{ headers:new HttpHeaders().set('Content-Type', 'application/json') })
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': ' http://localhost:4200',
+      'Access-Control-Allow-Credentials': 'true',
+      'Access-Control-Allow-Methods': ' POST, GET, OPTIONS, DELETE',
+      'Access-Control-Max-Age': ' 3600',
+      'Access-Control-Allow-Headers': 'Content-Type, Accept, X-Requested-With, remember-me, Authorization, access-control-max-age'
+  });
+    return this.http.post('http://localhost:8080/fibradosAPI/api/v1/user', 
+    JSON.stringify({email:email,
+      isPrivate:privacidad,
+      password:password,
+      username:name}),
+    { headers:header,          observe: 'response'  })
   }
   getUserDetails(email,password){
     return this.http.post('/api/auth.php',{
@@ -35,7 +48,7 @@ export class AuthService {
     return this.http.get('https://randomuser.me/api/?results=25');
   }
 
-
+  
   
     login( email:string,password:string) {
       
@@ -49,6 +62,7 @@ export class AuthService {
         'Access-Control-Max-Age': ' 3600',
         'Access-Control-Allow-Headers': 'Content-Type, Accept, X-Requested-With, remember-me, Authorization, access-control-max-age'
     });
+     
       return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/login', 
         JSON.stringify({
           username: email,
