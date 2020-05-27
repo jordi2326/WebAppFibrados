@@ -63,7 +63,7 @@ export class AuthService {
         'Access-Control-Allow-Headers': 'Content-Type, Accept, X-Requested-With, remember-me, Authorization, access-control-max-age'
     });
      
-      return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/login', 
+      return this.http.post(/*'http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/login'*/'http://localhost:8080/api/v1/login', 
         JSON.stringify({
           username: email,
           password: password

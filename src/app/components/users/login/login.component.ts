@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   constructor( private Auth : AuthService ,private router:Router, private cookieService : CookieService  , private api:HttpClient) { }
   private cookievalue:string;
   ngOnInit(): void {
+    this.cookieService.delete('token');
     this.Auth.getUsers().subscribe(
       (data) => { // Success
         this.users = data['results'];
@@ -62,6 +63,8 @@ export class LoginComponent implements OnInit {
       // display its headers
 
       if(resp.status==200) {
+        console.log('status login response is 200');
+        console.log('token is ', resp.body["token"]);
               this.cookieService.set('token',resp.body["token"]);//our cookie value podremos el valor del token que nos devuelve el header
               this.cookieService.set('name',resp.body["username"])
               console.log( this.cookieService.get('token')              )

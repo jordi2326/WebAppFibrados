@@ -15,20 +15,14 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log( this.cookieService.get('token')              )
-
-    this.Api.getallpost().subscribe(
-      (data) => {
-          this.Temas=data['results']
+    this.Api.getallpost().subscribe((data) => {
+        this.Temas=data['results']
+        console.log('temas loaded:', this.Temas)
       },
       (error) => {
         console.error(error);
       }
     );
-    console.log(this.Temas)
-
-
- 
   }
 
 }

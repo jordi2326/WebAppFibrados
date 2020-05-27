@@ -15,12 +15,15 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    let token: string | any= this._cookieService.get('token');
-    let customHeaders: HttpHeaders = req.headers;
-    if (token !== undefined) customHeaders = customHeaders.set('token', token);
-    const authReq = req.clone({
-        headers: customHeaders
+    const token = this._cookieService.get('token');
+    console.log('token: ', token);
+    if (!token) {
+      console.log('handle next req');
+      return next.handle(req);
+    }
+    const req1 = req.clone({
+      headers: req.headers.set('Authorization', `${token}`),
     });
-    return next.handle(authReq);
+    return next.handle(req1);
   }
 }
