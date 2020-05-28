@@ -20,7 +20,7 @@ export class DataApiService {
       'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
     });
    
-  return this.http.get('http://localhost:8080/api/v1/forum', 
+  return this.http.get('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/forum' /*'http://localhost:8080/api/v1/forum'*/,
     {
       headers: header, 
     });
