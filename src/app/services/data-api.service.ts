@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataApiService {
-  
+  private post  
 
   constructor(private http: HttpClient,private cookieService : CookieService) { }
 
@@ -23,6 +23,63 @@ export class DataApiService {
   return this.http.get('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/forum' /*'http://localhost:8080/api/v1/forum'*/,
     {
       headers: header, 
+      observe: 'response',
+
+    });
+  }
+
+  getapost( threadId:any) {
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Access-Control-Allow-Credentials' : 'true',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
+    });
+   
+  return this.http.get('http://porygon.fib.upc.edu:8080/fibradosAPI//api/v1/forum/'+threadId+'/posts' /*'http://localhost:8080/api/v1/forum'*/,
+    {
+      headers: header, 
+      observe: 'response',
+
+    });
+  }
+  
+  getuserid(id:string){
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Access-Control-Allow-Credentials' : 'true',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+    });
+
+      return this.http.get('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/user/'+{id},
+    {
+      headers: header, 
+      observe: 'response',
+
+    });
+
+  }
+  posttopic(message:String , sport:String , title:String , type:String ) {
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Access-Control-Allow-Credentials' : 'true',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+    });
+   this.post ={ };
+      return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/forum',
+      JSON.stringify({
+        idUser : 44,    message:"aaaa",    sport:"aaaa",    title:"Casa",type:"aaaaaa"
+   }),
+  
+    {
+      headers: header, 
+      observe: 'response',
+
     });
   }
 }

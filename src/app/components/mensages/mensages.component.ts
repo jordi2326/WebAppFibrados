@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,APP_ID } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router} from "@angular/router";
-import { VariablesglobalesService } from '../../services/variablesglobales.service';
+import { DataApiService } from '../../services/data-api.service';
+import {CookieService} from 'ngx-cookie-service';
+import { HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-mensages',
@@ -11,30 +14,33 @@ import { VariablesglobalesService } from '../../services/variablesglobales.servi
 export class MensagesComponent implements OnInit {
   titulo = "casa";
   mensage;
-  constructor(private route: ActivatedRoute , private global :VariablesglobalesService ) {
-    this.mensage = global.mensages;
-
+  constructor(private route: ActivatedRoute , private Api:DataApiService , private cookieService : CookieService  ) {
 
    }
 
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
-
-    if (id == 1){
-      console.log(VariablesglobalesService.casa)
-
+    this.Api.getapost(id).subscribe(resp => {
+      console.log(resp.body)
+       
+    },
+    (error) => {
+      console.error(error);
     }
-    this.mensage.body.push({name :'jordi' , text :'hola' });
-  }
+  );
+}
+
+
+ 
+  
 
   addMensajes(event){
     event.preventDefault()
     const target = event.target
     const text =target.querySelector('#texto').value
     console.log(text)
-    this.global.addmensage('jordi',text);
-    this.mensage=this.global.getMensages();
+
     
 
   }
