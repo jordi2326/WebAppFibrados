@@ -13,6 +13,7 @@ import { HttpClient} from '@angular/common/http';
 export class HomeComponent implements OnInit {
   Temas;
   Usuario
+  id:number
 
   constructor(private Api:DataApiService , private cookieService : CookieService) { 
   }
@@ -21,13 +22,8 @@ export class HomeComponent implements OnInit {
     this.Api.getallpost().subscribe(resp => {
         console.log(resp.body)
         this.Temas=resp.body;
-         this.Temas.map(key =>{
-           this.Api.getuserid(key["userId"]).subscribe(respuesta =>{
-             this.Usuario=respuesta.body
-              key["userId"]=respuesta["username"]
-           })
 
-         } );
+       
       },
       (error) => {
         console.error(error);

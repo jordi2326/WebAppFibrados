@@ -23,23 +23,24 @@ export class MensagesComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.Api.getapost(id).subscribe(resp => {
       console.log(resp.body)
-       
+       this.mensage=resp.body;
     },
     (error) => {
       console.error(error);
     }
   );
 }
-
-
  
-  
 
   addMensajes(event){
     event.preventDefault()
     const target = event.target
     const text =target.querySelector('#texto').value
     console.log(text)
+    const id = this.route.snapshot.params['id'];
+    this.Api.postposts(id,text,"aaa").subscribe(resp=>{
+      console.log(resp.status)
+    });
 
     
 

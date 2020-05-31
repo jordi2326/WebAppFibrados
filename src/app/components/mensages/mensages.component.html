@@ -2,17 +2,17 @@
 <br>
 <br>
 <div  class="container-sm">
-<h1>{{mensage.titulo}}</h1>
+<h1>{{mensage[0].title}}</h1>
 </div>
 <br>
 
-<div *ngFor="let aux of mensage.body" class="container-sm">
+<div *ngFor="let aux of mensage" class="container-sm">
     <div class="card">
         <div class="card-header">
-            {{aux.name}}
+            {{aux.userId}}
         </div>
         <div class="card-body">
-          <p class="card-text">{{aux.text}}.</p>
+          <p class="card-text">{{aux.message}}</p>
         </div>
       </div>
       <br>

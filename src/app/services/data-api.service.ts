@@ -37,7 +37,28 @@ export class DataApiService {
       'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
     });
    
-  return this.http.get('http://porygon.fib.upc.edu:8080/fibradosAPI//api/v1/forum/'+threadId+'/posts' /*'http://localhost:8080/api/v1/forum'*/,
+  return this.http.get('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/forum/'+threadId+'/posts' /*'http://localhost:8080/api/v1/forum'*/,
+    {
+      headers: header, 
+      observe: 'response',
+
+    });
+  }
+
+  postposts( threadId:number , message:any , title:any) {
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Access-Control-Allow-Credentials' : 'true',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
+    });
+    return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/forum/'+threadId
+    ,
+      JSON.stringify({
+        message: message , title:"casa",  idUser :44,
+   }),
+  
     {
       headers: header, 
       observe: 'response',
@@ -45,7 +66,7 @@ export class DataApiService {
     });
   }
   
-  getuserid(id:string){
+  getuserid(id:number){
     const header: HttpHeaders = new HttpHeaders({
       'Content-Type':  'application/json',
       'Access-Control-Allow-Credentials' : 'true',
@@ -54,7 +75,25 @@ export class DataApiService {
       'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
     });
 
-      return this.http.get('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/user/'+{id},
+      return this.http.get('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/user/'+id,
+    {
+      headers: header, 
+      observe: 'response',
+
+    });
+
+  }
+
+  postmessage(id:number,){
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Access-Control-Allow-Credentials' : 'true',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+    });
+
+      return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/user/'+id,
     {
       headers: header, 
       observe: 'response',
@@ -70,7 +109,6 @@ export class DataApiService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
     });
-   this.post ={ };
       return this.http.post('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/forum',
       JSON.stringify({
         idUser : 44,    message:"aaaa",    sport:"aaaa",    title:"Casa",type:"aaaaaa"
