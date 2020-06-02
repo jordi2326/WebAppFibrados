@@ -20,7 +20,10 @@ export class AddtopicComponent implements OnInit {
     const titulo =target.querySelector('#titulo').value
     const text =target.querySelector('#mensage').value
     const esport =target.querySelector('#esport').value
-    this.Api.posttopic(text,esport,titulo,"duda").subscribe(resp => {
+    const id  = this.cookieService.get('userId')
+    const userid   = Number(id)
+    console.log(userid)
+    this.Api.posttopic(text,esport,titulo,"",userid).subscribe(resp => {
       console.log(resp.headers)
 
     

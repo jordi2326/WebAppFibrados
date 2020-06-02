@@ -8,36 +8,31 @@ import { empty } from 'rxjs';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-   token=true  ;
-   token1 =false  ; 
+  public token :boolean = false  ;
   private _cookieService: CookieService;
 
-  constructor(injector: Injector) { 
+  constructor(injector: Injector,private cookieService : CookieService) { 
     this._initServices(injector);
   }
-
+  
   private _initServices(injector: Injector) {
     this._cookieService = injector.get(CookieService);
   }
 
   ngOnInit(): void {
-    let token:String = this._cookieService.get('token');
-   if( token != null || token != "") {
+     let token:String = this._cookieService.get('token');
+    if(token == "") {
      this.token=false;
-     this.token1=true;
    }
-   else   {
+    else     {
     this.token = true ;
-    this.token1 = false; 
   }
-  console.log(this.token , this.token1)   
   }
 
   onLogoutClick() {
     this._cookieService.delete('token');
     this._cookieService.delete('name');
-    this.token=true;
-    this.token1=false;
+    this.token=false;
    
   }
 

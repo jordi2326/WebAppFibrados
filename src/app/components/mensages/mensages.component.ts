@@ -14,6 +14,7 @@ import { HttpClient} from '@angular/common/http';
 export class MensagesComponent implements OnInit {
   titulo = "casa";
   mensage;
+  info;
   constructor(private route: ActivatedRoute , private Api:DataApiService , private cookieService : CookieService  ) {
 
    }
@@ -21,6 +22,12 @@ export class MensagesComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
+    this.Api.getinfoapost(id).subscribe(resp=>{
+      console.log(resp.status)
+      this.info=resp.body;
+
+    
+    });
     this.Api.getapost(id).subscribe(resp => {
       console.log(resp.body)
        this.mensage=resp.body;
@@ -38,8 +45,15 @@ export class MensagesComponent implements OnInit {
     const text =target.querySelector('#texto').value
     console.log(text)
     const id = this.route.snapshot.params['id'];
-    this.Api.postposts(id,text,"aaa").subscribe(resp=>{
+    let  id1=this.cookieService.get('userId')
+    const userid   = Number(id1)
+   
+    this.Api.postposts(id,text,"aaa",userid).subscribe(resp=>{
       console.log(resp.status)
+      if(resp.status==201){
+        this.ngOnInit();
+
+      }
     });
 
     

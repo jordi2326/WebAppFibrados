@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
   
   loginUser(event){
@@ -42,7 +43,9 @@ export class LoginComponent implements OnInit {
           console.log('token is ', resp.body["token"]);
           this.cookieService.set('token',resp.body["token"]);//our cookie value podremos el valor del token que nos devuelve el header
           this.cookieService.set('name',resp.body["username"])
+          this.cookieService.set('userId',resp.body["userId"])
           console.log( this.cookieService.get('token'))
+          this.cookieService.set('auth',"1");
           this.router.navigate(['/home'])
         }
       }, error=>{
