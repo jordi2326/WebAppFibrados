@@ -207,4 +207,21 @@ export class DataApiService {
 
     });
   }
+  eliminar(id:number ) {
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Access-Control-Allow-Credentials' : 'true',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
+    });
+    return this.http.delete('http://porygon.fib.upc.edu:8080/fibradosAPI/api/v1/forum/'+id
+    ,
+     {
+      
+      headers: header, 
+      observe: 'response',
+
+    });
+  }
 }

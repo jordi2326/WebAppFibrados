@@ -23,7 +23,7 @@ export class MensagesComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     this.Api.getinfoapost(id).subscribe(resp=>{
-      console.log(resp.status)
+      console.log(resp.body)
       this.info=resp.body;
 
     

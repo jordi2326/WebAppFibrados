@@ -1,20 +1,41 @@
 <app-navbar></app-navbar>
 
-
 <section id="profile" class="container">
   <div class="row mt-5">
-    <div class="offset-lg-4 col-lg-4 col-sm-6 col-12 main-section text-center card">
+    <div class="offset-lg-3 col-lg-6 col-sm-6 col-12 main-section text-center card">
       <div class="row">
-        <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
+        <div class="col-lg-12 col-sm-12 col-12 profile-header">
+          <br>
+          <br>
+          <h2>Usuario : {{User.username}}</h2>
+        </div>
       </div>
+      <br>
       <div class="row user-details">
         <div class="col-12">
-          <img src="../../../../assets/check-user.png" class="rounded-circle img-thumbnail" alt="profile">
+          <img src= {{image.src}} class="rounded-circle img-thumbnail" alt="profile">
           <p>
           </p>
-
           <hr>
-          <span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores suscipit itaque minima quae.</span>
+          <p>Username : {{User.username}}</p>
+          <p>Level : {{User.level}}</p>
+          <p>Coins :{{User.coins}} </p>
+          <p>Experience : {{User.experience}}</p>
+          <p id=01></p>
+          <hr>
+          <h4>Tòpics de l'usari</h4>
+          <div class="flex-container"  *ngFor="let X of post">
+              
+
+            <div class="card">
+              <div class="card-body">
+                <p class="card-title">{{X.title}}</p>
+                <button type="submit"  (click)="eliminar(X.id)"class="btn btn-primary mb-2">Eliminar</button>
+                </div>
+            </div>
+               
+          </div>
+
         </div>
       </div>
     </div>

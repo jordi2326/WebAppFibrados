@@ -17,3 +17,15 @@ img {
 .user-details h5 {
   margin: 15px 0 5px 0;
 }
+.flex-container {
+  flex-wrap: wrap;
+
+}
+.flex-container1 {
+  text-align: right;
+
+}
+.flex-container2 {
+  text-align: left;
+
+}
