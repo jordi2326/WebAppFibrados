@@ -21,6 +21,20 @@
                 <div class="form-group">
                   <a routerLink="/user/register" class="form-control login-user">Are you new ?</a>
                 </div>
+                <div>
+                 
+  
+                  <div *ngIf="faltancampos">
+  
+                    <p style="color:#FF0000">Camps buits</p>
+                </div>
+  
+                
+                <div *ngIf="contrasenyaincorrecta">
+                  <p style="color:#FF0000">Usuari/contrasenya erronis</p>
+                </div>
+              </div>
+  
               </form>
             </div>
           </div>

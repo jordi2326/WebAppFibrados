@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
   users: any[] = [];
   objeto: any[] = [];
   private cookievalue: string;
-
-
+  faltancampos = false;
+  contrasenyaincorrecta=false
   constructor(private Auth: AuthService,
               private router: Router, 
               private cookieService: CookieService, 
@@ -23,16 +23,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
   
   loginUser(event){
+    this.faltancampos=false
     event.preventDefault()
     const target = event.target
     const email=target.querySelector('#email').value
     const password=target.querySelector('#password').value
-    if (email == "" || password == "") 
-      window.alert("introduzca usuario y contraseña correcta");
+    if (email == "" || password == "") this.faltancampos=true;
+    if(this.faltancampos== false){
       this.Auth.login(email,password).subscribe(resp => {
         console.log(resp.headers)
         let casa = resp.headers.keys();
@@ -49,8 +49,9 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/home'])
         }
       }, error=>{
-       console.log('usuari o contrasenya incorrecta')
+       this.contrasenyaincorrecta=true;
        console.log(error.status)
      });
+    }
     } 
   }

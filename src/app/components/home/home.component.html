@@ -39,9 +39,10 @@
         <!--Table head-->
         <thead>
           <tr>
-            <th>Titulo</th>
+            <th>Títul</th>
             <th>Autor</th>
-           
+            <th>Esport</th>
+            <th>Tipus</th>
           </tr>
         </thead>
         <!--Table head-->
@@ -50,8 +51,9 @@
         <tbody *ngFor="let X of Temas">
           <tr>
             <td routerLink="/mensages/{{X.id}}">{{X.title}}</td>
-            <td>{{X.idUser}}</td>
-            
+            <td>{{X.creatorName}}</td>
+            <td>{{X.sport}}</td>
+            <td>{{X.type}}</td>
           </tr>
          
          

@@ -26,6 +26,12 @@ export class RegisterComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.emailwrong  = false;
+    this.passwordcorta = false ; 
+    this.namecorta = false;
+    this.selectmal = false;
+    this.usuarioexistente = false;
+    this.faltancampos = false;
   }
 
   RegisterUser(event){
@@ -38,20 +44,20 @@ export class RegisterComponent implements OnInit {
     const privacidad = target.querySelector('#privacidad').value
 
     console.log(password, name, email, privacidad)
-    this.validarEmail(email);
+    
 
    if (privacidad == "Privacidad de la cuenta :Privada/Publica") this.selectmal=true
    if (password.length < 5) this.passwordcorta = true;
    if (password=="" || name == "" ||
       email=="" || privacidad=="Privacidad de la cuenta :Privada/Publica")  this.faltancampos=true;
-
+    if(this.faltancampos==false ) this.validarEmail(email);
   if (this.faltancampos == false && this.emailwrong == false) 
     this.Auth.register(name,password,email,privacidad).subscribe(resp => {
     // display its headers
     console.log(resp)
    }, error=>{
-     console.log('usuario existente')
-     console.log(error.status)
+    this.usuarioexistente = true;
+    console.log(error.status)
    });
   }
 
