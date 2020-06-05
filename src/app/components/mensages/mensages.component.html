@@ -10,7 +10,7 @@
 <div  class="container-sm">
   <div class="card">
       <div class="card-header">
-          {{info.idUser}}
+          {{info.creatorName}}
       </div>
       <div class="card-body">
         <p class="card-text">{{info.message}}</p>
@@ -22,7 +22,7 @@
 <div *ngFor="let aux of mensage" class="container-sm">
     <div class="card">
         <div class="card-header">
-            {{aux.userId}}
+            {{aux.creatorName}}
         </div>
         <div class="card-body">
           <p class="card-text">{{aux.message}}</p>
