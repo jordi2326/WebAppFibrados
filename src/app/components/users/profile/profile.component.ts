@@ -49,10 +49,7 @@ export class ProfileComponent implements OnInit {
     });
 
   }
-  onLogoutClick() {
-    this.cookieService.delete('token');
-    this.cookieService.delete('name');
-  }
+ 
   eliminar(id){
     console.log(id)
     this.Api.eliminar(id).subscribe(resp=>{
